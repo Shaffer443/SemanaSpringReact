@@ -3,9 +3,19 @@ import "./style.css"
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
 
 
 function SalesCard() {
+
+    const max = new Date(new Date().setDate(new Date().getDate() + 1));
+    /* pegando a data atual e somando um dia a mais na diferença da data atual para uma possivel pesquisa de 
+    um dia*/
+
+    const [ minDate, setMinDate ] = useState(new Date());
+    const [ maxDate, setMaxDate ] = useState(max);
+
+
     return(
 
          <div className="dsmeta-card">
@@ -13,16 +23,16 @@ function SalesCard() {
             <div>
               <div className="dsmeta-form-control-container">
               <DatePicker
-                    selected={new Date()}
-                    onChange={(date: Date) => {}}
+                    selected={minDate}
+                    onChange={(date: Date) => setMinDate(date)}
                     className="dsmeta-form-control"
                     dateFormat="dd/MM/yyyy"
                 />
               </div>
               <div className="dsmeta-form-control-container">
               <DatePicker
-                    selected={new Date()}
-                    onChange={(date: Date) => {}}
+                    selected={maxDate}
+                    onChange={(date: Date) => setMaxDate(date)}
                     className="dsmeta-form-control"
                     dateFormat="dd/MM/yyyy"
                 />
